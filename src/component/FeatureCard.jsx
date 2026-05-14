@@ -1,15 +1,6 @@
-export default function FeatureCard({
-  hasRightBorder = true,
-  icon: Icon,
-  text,
-  title,
-}) {
+export default function FeatureCard({ icon: Icon, text, title }) {
   return (
-    <div
-      className={`
-        ${hasRightBorder ? "border-r" : ""}
-        p-6 flex flex-col min-h-60 `}
-    >
+    <div className="border border-gray-300 rounded-sm px-4 py-8">
       <div className="icon">
         <Icon className="w-8 h-8 mb-4 font-bold text-[#111]" />
       </div>

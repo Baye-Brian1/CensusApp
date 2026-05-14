@@ -8,12 +8,14 @@ export default function Censusnav() {
         <h1 className="text-[#111] font-sans text-xl font-semibold tracking-tight">CensusSys</h1>
       </div>
       <div className="flex font-sans items-center p-2 gap-8">
-        <Link to={"/"} className="text-gray-700 hover:text-black transition font-medium">Features</Link>
-        <Link to={"/dashboard"} className="text-gray-700 hover:text-black transition font-medium">Docs</Link>
-        <Link to={"/profile"} className="text-gray-700 hover:text-black transition font-medium">Profile</Link>
+        <Link to={"/"} className="text-gray-700 hover:text-black transition"></Link>
+        <a href={'#Home'} className="text-gray-700 hover:text-black transition">Home</a>
+        <a href={'#feature'} className="text-gray-700 hover:text-black transition">Feature</a>
+        <a href={'#workflow'} className="text-gray-700 hover:text-black transition">How It Works</a>
+        <a href={'#callaction'} className="text-gray-700 hover:text-black transition">CTA</a>
       </div>
       <button className="px-4 py-2.5 outline-none gap-2 bg-[#111] text-sm cursor-pointer text-white font-mono font-medium hover:bg-gray-800 transition">
-        Get Started
+        <Link to={"/login"}> Get Started</Link>
       </button>
     </nav>
   );

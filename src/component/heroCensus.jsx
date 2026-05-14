@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function HeroCensus() {
   return (
-    <section className="pt-22 pb-22 px-6">
+    <section id="Home" className="pt-22 pb-22 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-5xl mb-2 font-inter text-[#111] text-balance tracking-tight leading-tight">
           Accurate Data. Better <br />

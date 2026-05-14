@@ -1,9 +1,9 @@
-import WorkflowCard from "./workflowCard";
+import WorkflowCard from "./WorkflowCard";
 
 
 export default function Workflow(){
     return(
-    <section id="workflow" className="pt-20">
+    <section id="workflow" className="pt-20 pb-20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl mb-4 font-inter">

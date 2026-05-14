@@ -1,6 +1,7 @@
 import CallAction from "../component/CallAction"
 import Censusnav from "../component/Censusnav"
 import FeatureCensus from "../component/FeatureCensus"
+import Footer from "../component/Footer"
 import HeroCensus from "../component/heroCensus"
 import Workflow from "../component/Workflow"
 
@@ -12,6 +13,7 @@ export default function Home(){
             <FeatureCensus/>
             <Workflow/>
             <CallAction/>
+            <Footer/>
         </div>
     )
 };
