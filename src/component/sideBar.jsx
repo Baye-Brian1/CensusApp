@@ -1,21 +1,48 @@
 import { NavLink } from "react-router-dom";
-import { Home, BarChart, Users, User, UserCheck, Settings, Clipboard } from "lucide-react";
+import { LayoutDashboard, Users, User, UserCheck, FileText, BarChart3, Settings, Home } from "lucide-react";
 
-export const sideBar=()=>{
-    return(
-        <aside className="bg-white w-64 border-r border-gray-200 min-h-screen">
-            <div className="text-[#111] font-sans text-xl font-semibold tracking-tight">
-                CensusSys
-            </div>
-            <nav className="flex flex-col">
-                <NavLink to="/" className="flex items-center gap-2 hover:bg-gray-100"><Home/>Dashboard</NavLink>
-                <NavLink to="/household" className="flex items-center gap-2 hover:bg-gray-100"><Users/>Households</NavLink>
-                <NavLink to="/individuals" className="flex items-center gap-2 hover:bg-gray-100"><User/>Individuals</NavLink>
-                <NavLink to="/enumerators" className="flex items-center gap-2 hover:bg-gray-100"><UserCheck/>Enumerators</NavLink>
-                <NavLink to="/reports" className="flex items-center gap-2 hover:bg-gray-100"><Clipboard/>Reports</NavLink>
-                <NavLink to="/analytics" className="flex items-center gap-2 hover:bg-gray-100"><BarChart/>Analytics</NavLink>
-                <NavLink to="/settings" className="flex items-center gap-2 hover:bg-gray-100"><Settings/>Settings</NavLink>
-            </nav>
-        </aside>
-    )
+export default function Sidebar() {
+  const navItems = [
+    { path: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+    { path: "/households", icon: Users, label: "Households" },
+    { path: "/individuals", icon: User, label: "Individuals" },
+    { path: "/enumerators", icon: UserCheck, label: "Enumerators" },
+    { path: "/reports", icon: FileText, label: "Reports" },
+    { path: "/analytics", icon: BarChart3, label: "Analytics" },
+    { path: "/settings", icon: Settings, label: "Settings" },
+  ];
+
+  return (
+    <aside className="bg-white w-64 border-r border-gray-200 flex flex-col">
+      <div className="p-6 border-b border-gray-200">
+        <div className="flex items-center gap-2">
+          <div className="bg-black w-8 h-8 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold">C</span>
+          </div>
+          <h1 className="text-xl font-bold text-gray-900">CensusSys</h1>
+        </div>
+      </div>
+      
+      <nav className="flex-1 p-4">
+        <div className="space-y-1">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-gray-100 text-gray-900"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                }`
+              }
+            >
+              <item.icon className="w-5 h-5" />
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
+      </nav>
+    </aside>
+  );
 }
