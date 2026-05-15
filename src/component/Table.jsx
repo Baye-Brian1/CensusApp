@@ -1,21 +1,42 @@
 const Table = ({ columns, data, actions }) => {
+  if (!data || data.length === 0) {
+    return (
+      <div className="text-center py-8 text-gray-500 border border-gray-200 rounded-lg">
+        No data available
+      </div>
+    );
+  }
+
   return (
-    <table className="min-w-full border border-gray-200">
-      <thead className="bg-gray-50">
-        <tr>
-          {columns.map((col) => <th key={col} className="p-2 border-b">{col}</th>)}
-          {actions && <th className="p-2 border-b">Actions</th>}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, i) => (
-          <tr key={i} className="hover:bg-gray-50">
-            {columns.map((col) => <td key={col} className="p-2 border-b">{row[col]}</td>)}
-            {actions && <td className="p-2 border-b flex gap-2">{actions(row)}</td>}
+    <div className="overflow-x-auto">
+      <table className="min-w-full border border-gray-200 rounded-lg">
+        <thead className="bg-gray-50">
+          <tr>
+            {columns.map((col, idx) => (
+              <th key={idx} className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">
+                {col}
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((row, idx) => (
+            <tr key={idx} className="hover:bg-gray-50">
+              {columns.map((col, colIdx) => (
+                <td key={colIdx} className="px-4 py-3 text-sm text-gray-600 border-b border-gray-200">
+                  {row[col] !== undefined ? row[col] : 'N/A'}
+                </td>
+              ))}
+              {actions && (
+                <td className="px-4 py-3 text-sm border-b border-gray-200">
+                  {actions(row)}
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
