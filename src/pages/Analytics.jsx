@@ -3,38 +3,35 @@ import { CensusContext } from "../context/CensusContext";
 import { Users, Home, UserCheck, BarChart3, PieChart, TrendingUp, MapPin, Calendar } from "lucide-react";
 
 const Analytics = () => {
-  const { households, individuals, enumerators } = useContext(CensusContext);
+  const {households, individuals, enumerators} = useContext(CensusContext);
 
-  // Ensure we have arrays
-  const householdsArray = Array.isArray(households) ? households : [];
-  const individualsArray = Array.isArray(individuals) ? individuals : [];
-  const enumeratorsArray = Array.isArray(enumerators) ? enumerators : [];
+  const householdsArray = Array.isArray(households)? households : [];
+  const individualsArray = Array.isArray(individuals)? individuals : [];
+  const enumeratorsArray = Array.isArray(enumerators)? enumerators : [];
 
-  // Calculate basic demographics
   const totalPopulation = individualsArray.length;
-  const maleCount = individualsArray.filter(i => i?.gender === 'Male').length;
-  const femaleCount = individualsArray.filter(i => i?.gender === 'Female').length;
-  const malePercentage = totalPopulation > 0 ? (maleCount / totalPopulation * 100).toFixed(1) : 0;
+  const maleCount = individualsArray.filter(i => i?.gender === "Male").length;
+  const femaleCount = individualsArray.filter(i => i?.gender === "Female").length;
+  const malePercentage= totalPopulation > 0 ? (maleCount / totalPopulation * 100).toFixed(1) : (0);
   const femalePercentage = totalPopulation > 0 ? (femaleCount / totalPopulation * 100).toFixed(1) : 0;
 
-  // Calculate age groups
   const ageGroups = {
     '0-14': individualsArray.filter(i => i?.age >= 0 && i?.age <= 14).length,
-    '15-24': individualsArray.filter(i => i?.age >= 15 && i?.age <= 24).length,
-    '25-44': individualsArray.filter(i => i?.age >= 25 && i?.age <= 44).length,
+    '15-24': individualsArray.filter(i => i?.age>=15 && i?.age<=24).length,
+    '25-44': individualsArray.filter(i => i?.age>=25 && i?.age<=44).length,
     '45-64': individualsArray.filter(i => i?.age >= 45 && i?.age <= 64).length,
     '65+': individualsArray.filter(i => i?.age >= 65).length,
   };
 
-  // Calculate population by location
-  const locationPopulation = {};
-  householdsArray.forEach(household => {
-    const location = household?.location || 'Unknown';
-    const members = household?.members || 0;
-    locationPopulation[location] = (locationPopulation[location] || 0) + members;
-  });
+ const locationPopulation={};
 
-  // Calculate marital status
+ householdsArray.forEach(households =>{
+  const location= households?.location||'Unknown';
+  const members= households?.members || 0;
+  locationPopulation[location]=(locationPopulation[location]||0)+members
+
+ });
+
   const maritalStatus = {
     'Single': individualsArray.filter(i => i?.maritalStatus === 'Single').length,
     'Married': individualsArray.filter(i => i?.maritalStatus === 'Married').length,
@@ -42,7 +39,6 @@ const Analytics = () => {
     'Widowed': individualsArray.filter(i => i?.maritalStatus === 'Widowed').length,
   };
 
-  // Calculate education levels
   const educationLevels = {
     'None': individualsArray.filter(i => i?.educationLevel === 'None').length,
     'Primary': individualsArray.filter(i => i?.educationLevel === 'Primary').length,
@@ -55,6 +51,7 @@ const Analytics = () => {
     ? (individualsArray.reduce((sum, i) => sum + (i?.age || 0), 0) / totalPopulation).toFixed(1)
     : 0;
 
+  co  
   const maxAgeGroup = Math.max(...Object.values(ageGroups));
   const maxLocation = Math.max(...Object.values(locationPopulation));
   const maxMarital = Math.max(...Object.values(maritalStatus));
