@@ -138,37 +138,39 @@ householdsArray.forEach(household => {
               </div>
               <p className="mt-2 font-medium">{malePercentage}%</p>
             </div>
-            
+
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto">
-                <svg className="w-32 h-32 transform -rotate-90">
+                <svg className="w-32 h-32  transform -rotate-90">
                   <circle
-                    cx="64"
-                    cy="64"
-                    r="56"
-                    fill="none"
-                    stroke="#e5e7eb"
-                    strokeWidth="16"
+                  cx="64"
+                  cy="64"
+                  r="56"
+                  fill="none"
+                  stroke="#e5e7eb"
+                  strokeWidth="16px"
                   />
                   <circle
-                    cx="64"
-                    cy="64"
-                    r="56"
-                    fill="none"
-                    stroke="#111"
-                    strokeWidth="16"
-                    strokeDasharray={`${2 * Math.PI * 56 * (femalePercentage / 100)} ${2 * Math.PI * 56}`}
-                    strokeLinecap="round"
+                  cx="64"
+                  cy="64"
+                  r="56"
+                  fill="none"
+                  stroke="#111"
+                  strokeWidth="16"
+                  strokeDasharray={`${2 * Math.PI * 56 * (malePercentage/100)} ${2 * Math.PI * 56}`}
+                  strokeLinecap="round"
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div>
-                    <p className="text-2xl font-bold">{femaleCount}</p>
+                    <p className="font-bold text-2xl">
+                      {femaleCount}
+                    </p>
                     <p className="text-xs text-gray-500">Female</p>
                   </div>
                 </div>
               </div>
-              <p className="mt-2 font-medium">{femalePercentage}%</p>
+              <p className="mt-2">{femalePercentage}%</p>
             </div>
           </div>
           
@@ -196,6 +198,7 @@ householdsArray.forEach(household => {
             <h2 className="text-lg font-semibold text-gray-900">Age Distribution</h2>
             <BarChart3 className="w-5 h-5 text-gray-400" />
           </div>
+           
           <div className="space-y-4">
             {Object.entries(ageGroups).map(([group, count]) => {
               const percentage = totalPopulation > 0 ? (count / totalPopulation * 100).toFixed(1) : 0;
@@ -259,6 +262,7 @@ householdsArray.forEach(household => {
             <h2 className="text-lg font-semibold text-gray-900">Marital Status</h2>
             <TrendingUp className="w-5 h-5 text-gray-400" />
           </div>
+         
           <div className="space-y-4">
             {Object.entries(maritalStatus).map(([status, count]) => {
               const percentage = totalPopulation > 0 ? (count / totalPopulation * 100).toFixed(1) : 0;
@@ -306,36 +310,6 @@ householdsArray.forEach(household => {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
-
-      {/* Additional Insights */}
-      <div className="mt-8 bg-gradient-to-r from-gray-900 to-gray-700 rounded-lg p-6 text-white">
-        <h3 className="text-lg font-semibold mb-3">Key Insights</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <p className="text-sm opacity-80">Gender Ratio</p>
-            <p className="text-2xl font-bold">
-              {totalPopulation > 0 ? (maleCount / femaleCount).toFixed(2) : 0}
-            </p>
-            <p className="text-xs opacity-70">Males per female</p>
-          </div>
-          <div>
-            <p className="text-sm opacity-80">Dependency Ratio</p>
-            <p className="text-2xl font-bold">
-              {totalPopulation > 0 
-                ? ((ageGroups['0-14'] + ageGroups['65+']) / (totalPopulation - ageGroups['0-14'] - ageGroups['65+']) * 100).toFixed(1)
-                : 0}%
-              </p>
-            <p className="text-xs opacity-70">Young + Elderly / Working Age</p>
-          </div>
-          <div>
-            <p className="text-sm opacity-80">Household Density</p>
-            <p className="text-2xl font-bold">
-              {householdsArray.length > 0 ? (totalPopulation / householdsArray.length).toFixed(1) : 0}
-            </p>
-            <p className="text-xs opacity-70">People per household</p>
           </div>
         </div>
       </div>
