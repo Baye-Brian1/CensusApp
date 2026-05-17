@@ -23,14 +23,12 @@ const Analytics = () => {
     '65+': individualsArray.filter(i => i?.age >= 65).length,
   };
 
- const locationPopulation={};
-
- householdsArray.forEach(households =>{
-  const location= households?.location||'Unknown';
-  const members= households?.members || 0;
-  locationPopulation[location]=(locationPopulation[location]||0)+members
-
- });
+const locationPopulation={};
+householdsArray.forEach(household => {
+  const location = household?.location || "unknown";
+  const members = household?.maembers || 0;
+  locationPopulation[location]=(locationPopulation[location] || 0) + members;
+});
 
   const maritalStatus = {
     'Single': individualsArray.filter(i => i?.maritalStatus === 'Single').length,
@@ -51,8 +49,7 @@ const Analytics = () => {
     ? (individualsArray.reduce((sum, i) => sum + (i?.age || 0), 0) / totalPopulation).toFixed(1)
     : 0;
 
-  co  
-  const maxAgeGroup = Math.max(...Object.values(ageGroups));
+  const maxAgeGroup = Math.max(...Object.values(ageGroups));  
   const maxLocation = Math.max(...Object.values(locationPopulation));
   const maxMarital = Math.max(...Object.values(maritalStatus));
   const maxEducation = Math.max(...Object.values(educationLevels));
@@ -64,12 +61,11 @@ const Analytics = () => {
         <p className="text-gray-500 mt-1">Comprehensive census data analysis and insights</p>
       </div>
 
-      {/* Key Metrics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-500">Total Population</p>
-            <Users className="w-5 h-5 text-blue-500" />
+            <Users className="w-5 h-5 text-[#111]" />
           </div>
           <p className="text-2xl font-bold">{totalPopulation.toLocaleString()}</p>
           <p className="text-xs text-gray-400 mt-1">Registered individuals</p>
@@ -78,7 +74,7 @@ const Analytics = () => {
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-500">Households</p>
-            <Home className="w-5 h-5 text-green-500" />
+            <Home className="w-5 h-5 text-[#111]" />
           </div>
           <p className="text-2xl font-bold">{householdsArray.length.toLocaleString()}</p>
           <p className="text-xs text-gray-400 mt-1">Average size: {householdsArray.length ? (totalPopulation / householdsArray.length).toFixed(1) : 0}</p>
@@ -87,7 +83,7 @@ const Analytics = () => {
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-500">Average Age</p>
-            <Calendar className="w-5 h-5 text-purple-500" />
+            <Calendar className="w-5 h-5 text-[#111]" />
           </div>
           <p className="text-2xl font-bold">{averageAge}</p>
           <p className="text-xs text-gray-400 mt-1">Years</p>
@@ -96,14 +92,13 @@ const Analytics = () => {
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-500">Enumerators</p>
-            <UserCheck className="w-5 h-5 text-orange-500" />
+            <UserCheck className="w-5 h-5 text-[#111]" />
           </div>
           <p className="text-2xl font-bold">{enumeratorsArray.length}</p>
           <p className="text-xs text-gray-400 mt-1">Active: {enumeratorsArray.filter(e => e?.status === 'Active').length}</p>
         </div>
       </div>
 
-      {/* Gender Distribution */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div className="bg-white rounded-lg border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-4">
@@ -128,7 +123,7 @@ const Analytics = () => {
                     cy="64"
                     r="56"
                     fill="none"
-                    stroke="#3b82f6"
+                    stroke="#292828"
                     strokeWidth="16"
                     strokeDasharray={`${2 * Math.PI * 56 * (malePercentage / 100)} ${2 * Math.PI * 56}`}
                     strokeLinecap="round"
@@ -160,7 +155,7 @@ const Analytics = () => {
                     cy="64"
                     r="56"
                     fill="none"
-                    stroke="#ec4899"
+                    stroke="#111"
                     strokeWidth="16"
                     strokeDasharray={`${2 * Math.PI * 56 * (femalePercentage / 100)} ${2 * Math.PI * 56}`}
                     strokeLinecap="round"
@@ -183,14 +178,14 @@ const Analytics = () => {
               <span className="font-medium">{maleCount} ({malePercentage}%)</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-              <div className="bg-blue-500 rounded-full h-2" style={{ width: `${malePercentage}%` }} />
+              <div className="bg-[#292828] rounded-full h-2" style={{ width: `${malePercentage}%` }} />
             </div>
             <div className="flex justify-between text-sm mt-3">
               <span>Female</span>
               <span className="font-medium">{femaleCount} ({femalePercentage}%)</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-              <div className="bg-pink-500 rounded-full h-2" style={{ width: `${femalePercentage}%` }} />
+              <div className="bg-[#111] rounded-full h-2" style={{ width: `${femalePercentage}%` }} />
             </div>
           </div>
         </div>
@@ -245,7 +240,7 @@ const Analytics = () => {
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div 
-                      className="bg-blue-500 rounded-full h-2 transition-all"
+                      className="bg-[#292828] rounded-full h-2 transition-all"
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
@@ -276,7 +271,7 @@ const Analytics = () => {
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div 
-                      className="bg-purple-500 rounded-full h-2 transition-all"
+                      className="bg-[#111] rounded-full h-2 transition-all"
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
@@ -304,7 +299,7 @@ const Analytics = () => {
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div 
-                      className="bg-green-500 rounded-full h-2 transition-all"
+                      className="bg-gray-800 rounded-full h-2 transition-all"
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
